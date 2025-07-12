@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>sukibeep</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #00ccff;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #videoSection {
+      margin-top: 30px;
+      display: none;
+    }
+
+    video {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>sukibeep</h1>
+  <button onclick="showVideo()">Video</button>
+
+  <div id="videoSection">
+    <button onclick="playVideo()">Play</button>
+    <video id="myVideo" controls>
+      <source src="./video.mp4" type="video/mp4">
+      browser kamu ga support video.
+    </video>
+  </div>
+
+  <script>
+    function showVideo() {
+      document.getElementById('videoSection').style.display = 'block';
+    }
+
+    function playVideo() {
+      const vid = document.getElementById("myVideo");
+      vid.play();
+    }
+  </script>
+
+</body>
+</html>
