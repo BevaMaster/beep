@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SukiBev</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #003d99, #66ccff);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SukiBev</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #003d99, #66ccff);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
 
-    .button-group {
-      display: flex;
-      gap: 15px;
-    }
+    .button-group {
+      display: flex;
+      gap: 15px;
+    }
 
-    button {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 2px solid white;
-      padding: 10px 20px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: background 0.2s ease;
-    }
+    button {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: background 0.2s ease;
+    }
 
-    button:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
 
-    video {
-      margin-top: 30px;
-      max-width: 90%;
-      max-height: 50vh;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-      display: none;
-    }
-  </style>
+    video {
+      margin-top: 30px;
+      max-width: 90%;
+      max-height: 50vh;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>SukiBev</h1>
+  <h1>SukiBev</h1>
 
-  <div class="button-group">
-    <button onclick="playVideo('Eles1')">Play Eles</button>
-  </div>
+  <div class="button-group">
+    <button onclick="playVideo('Eles1')">Play Eles</button>
+  </div>
 
-  <video id="Eles1" controls>
-    <source src="video.mp4" type="video/mp4">
-    browser kamu gak support video
-  </video>
+  <video id="Eles1" controls>
+    <source src="https://files.catbox.moe/5a7uda.mp4" type="video/mp4">
+    browser kamu gak support video
+  </video>
 
-  <script>
-    function playVideo(videoId) {
-      const videos = document.querySelectorAll('video');
-      videos.forEach(v => {
-        v.pause();
-        v.style.display = 'none';
-      });
+  <script>
+    function playVideo(videoId) {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(v => {
+        v.pause();
+        v.style.display = 'none';
+      });
 
-      const selected = document.getElementById(videoId);
-      selected.style.display = 'block';
-      selected.play();
-    }
-  </script>
+      const selected = document.getElementById(videoId);
+      selected.styl
+e.display = 'block';
+      selected.play();
+    }
+  </script>
 </body>
 </html>
