@@ -1,84 +1,396 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SukiBev</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #003d99, #66ccff);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bv-Verse — web</title>
+    <link rel="icon" type="image/jpg" href="https://placehold.co/300x300/1A1A1A/C00000?text=Beva">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        :root {
+            --background-dark: #0A0A0A;
+            --background-card: rgba(26, 26, 26, 0.7);
+            --primary-red: #B00000;
+            --secondary-red: #8B0000;
+            --text-light: #F0F0F0;
+            --text-muted: #A0A0A0;
+        }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .button-group {
-      display: flex;
-      gap: 15px;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    button {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 2px solid white;
-      padding: 10px 20px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: background 0.2s ease;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    .my-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
 
-    button:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+    #foto {
+      border: 5px solid darkred;
+      transform: rotate(5deg);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(139,0,0,0.6);
+      cursor: pointer;
+    }
+    #foto.active {
+      border-color: #8B0000;
+      box-shadow: 0 0 25px rgba(139,0,0,0.9);
+      transform: rotate(0deg);
+    }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--secondary-red) 0%, transparent 60%);
+            z-index: -1;
+            opacity: 0.2;
+        }
 
-    video {
-      margin-top: 30px;
-      max-width: 90%;
-      max-height: 50vh;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-      display: none;
-    }
-  </style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-header {
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--background-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-text {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero {
+            padding-top: 150px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-red);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(176, 0, 0, 0.5);
+            animation: bounceIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: textFadeIn 1.5s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            color: var(--text-muted);
+            animation: textFadeIn 1.5s ease-in-out 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-title {
+            animation: colorBlend 3s infinite alternate;
+        }
+
+        h2 {
+            font-size: clamp(28px, 6vw, 36px);
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .services-grid {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .service-card {
+            background-color: var(--background-card);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-left: 5px solid var(--primary-red);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-icon {
+            background-color: var(--background-card);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: var(--primary-red);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+        }
+        
+        .about-me {
+            text-align: center;
+        }
+
+        .about-me p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .my-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .my-photo:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--background-card);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card, .info-icon {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after, .info-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: width 0.3s ease-out, height 0.3s ease-out;
+            transform: translate(-50%, -50%);
+        }
+
+        .service-card:active::after, .info-icon:active::after {
+            width: 200%;
+            height: 200%;
+        }
+
+        @keyframes colorBlend {
+            0% { color: var(--text-light); }
+            50% { color: var(--primary-red); }
+            100% { color: var(--text-light); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            80% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>SukiBev</h1>
 
-  <div class="button-group">
-    <button onclick="playVideo('Eles1')">Play Eles</button>
-  </div>
+    <header class="main-header">
+        <nav class="container">
+            <div class="header-text">Bv-Verse</div>
+        </nav>
+    </header>
 
-  <video id="Eles1" controls>
-    <source src="https://files.catbox.moe/5a7uda.mp4" type="video/mp4">
-    browser kamu gak support video
-  </video>
+    <main>
+        <section id="hero" class="hero">
+            <img src="https://placehold.co/300x300/1A1A1A/C00000?text=Beva" alt="Foto Profil" class="profile-img">
+            <h1>Halo, Saya <span class="hero-title">Beva</span></h1>
+            <p>Saya seorang pelajar di SMK jurusan TKJ. Saya sedang belajar membuat website yang bagus.</p>
+        </section>
 
-  <script>
-    function playVideo(videoId) {
-      const videos = document.querySelectorAll('video');
-      videos.forEach(v => {
-        v.pause();
-        v.style.display = 'none';
-      });
+        <section id="services">
+            <h2>Alasan Saya Memilih TKJ</h2>
+            <div class="container services-grid">
+                <div class="service-card reveal-element">
+                    <h3>Cinta Teknologi</h3>
+                    <p>Saya tertarik dengan dunia komputer dan ingin tahu bagaimana website dibuat dari nol. Jurusan ini membuat saya bisa bereksperimen dan belajar langsung tentang hal-hal yang saya sukai.</p>
+                </div>
+                <div class="service-card reveal-element">
+                    <h3>Membuat Website Impian</h3>
+                    <p>Saya ingin punya kemampuan untuk mengubah ide-ide menjadi tampilan yang nyata di internet. TKJ memberi saya dasar yang kuat di HTML, CSS, dan JavaScript untuk mewujudkan impian itu.</p>
+                </div>
+                <div class="service-card reveal-element">
+                    <h3>Siap Berkarir di Masa Depan</h3>
+                    <p>Dengan belajar di jurusan ini, saya yakin bisa mendapatkan pekerjaan yang baik di bidang IT. Jurusan ini mempersiapkan saya dengan keterampilan yang sangat dibutuhkan di industri.</p>
+                </div>
+            </div>
+        </section>
 
-      const selected = document.getElementById(videoId);
-      selected.styl
-e.display = 'block';
-      selected.play();
-    }
-  </script>
+        <section id="contact">
+            <h2>Ayo Terhubung!</h2>
+            <div class="container contact-info">
+                <div class="info-item reveal-element">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <h4>Telepon</h4>
+                        <p>+6282182572850</p>
+                    </div>
+                </div>
+                <div class="info-item reveal-element">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Alamat</h4>
+                        <p>Jl. Sukamaju Indah, Bandar Lampung</p>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; color: var(--text-muted);">Sekolah: SMK 6 Bandar Lampung</p>
+        </section>
+        
+        <section id="me">
+            <h2>Tentang Saya</h2>
+            <div class="container about-me">
+                <img id="foto"src="ror.jpg" alt="Foto Diri Saya" class="my-photo reveal-element">
+                <p>Halo, saya Beva! Saya adalah seorang pelajar yang penuh semangat untuk belajar hal baru. Proyek ini adalah langkah pertama saya dalam dunia web. Semoga Anda menyukainya!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Proyek ini dibuat oleh seorang pelajar, dengan penuh semangat!. <u><b>Beva</b></u></p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.reveal-element').forEach(element => {
+        observer.observe(element);
+      });
+
+      const foto = document.getElementById("foto");
+      foto.addEventListener("click", () => {
+        foto.classList.toggle("active");
+      });
+    });
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            document.querySelectorAll('.reveal-element').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
