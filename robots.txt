@@ -1,4 +1,13 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bv-verse.my.id/sitemap.xml
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirect...</title>
+    <script>
+      // redirect ke index.html
+      window.location.href = "/index.html";
+    </script>
+  </head>
+  <body>
+    <p>balik ke home...</p>
+  </body>
+</html>
