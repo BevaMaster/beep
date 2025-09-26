@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
 <html>
   <head>
-    <title>Redirect...</title>
+    <title>redirect..</title>
     <script>
-      // redirect ke index.html
       window.location.href = "/index.html";
     </script>
   </head>
   <body>
-    <p>balik ke home...</p>
+    <p>lagi diarahin ke halaman utama sabar</p>
   </body>
 </html>
