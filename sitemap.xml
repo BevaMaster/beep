@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://bv-verse.my.id/</loc>
-        <lastmod>2025-09-25</lastmod>
-        <priority>1.0</priority>
-    </url>
-</urlset>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>redirect..</title>
+    <script>
+      window.location.href = "/index.html";
+    </script>
+  </head>
+  <body>
+    <p>balik ke home</p>
+  </body>
+</html>
